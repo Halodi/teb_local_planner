@@ -515,6 +515,9 @@ public:
    */
   virtual bool isTrajectoryFeasible(dwb_critics::ObstacleFootprintCritic* costmap_model, const std::vector<geometry_msgs::msg::Point>& footprint_spec, double inscribed_radius = 0.0,
           double circumscribed_radius=0.0, int look_ahead_idx=-1);
+
+  template<typename T>
+  static void register_type(g2o::Factory* factory, const std::string name);
   
   //@}
   
