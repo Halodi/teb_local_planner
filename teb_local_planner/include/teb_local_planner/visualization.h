@@ -86,7 +86,7 @@ public:
    * @param nh local rclcpp::Node::SharedPtr
    * @param cfg const reference to the TebConfig class for parameters
    */
-  TebVisualization(const rclcpp_lifecycle::LifecycleNode::SharedPtr & nh, const TebConfig& cfg);
+  TebVisualization(const rclcpp_lifecycle::LifecycleNode::WeakPtr & nh, const TebConfig& cfg);
   
   /** @name Publish to topics */
   //@{

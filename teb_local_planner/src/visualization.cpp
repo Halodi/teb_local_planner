@@ -61,7 +61,7 @@ void publishPlan(const std::vector<geometry_msgs::msg::PoseStamped>& path,
     pub->publish(gui_path);
 }
 
-TebVisualization::TebVisualization(const rclcpp_lifecycle::LifecycleNode::SharedPtr & nh, const TebConfig& cfg) : nh_(nh), cfg_(&cfg), initialized_(false)
+TebVisualization::TebVisualization(const rclcpp_lifecycle::LifecycleNode::WeakPtr & nh, const TebConfig& cfg) : nh_(nh), cfg_(&cfg), initialized_(false)
 {
 }
 

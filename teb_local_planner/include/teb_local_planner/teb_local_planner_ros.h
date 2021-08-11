@@ -105,10 +105,8 @@ public:
    * @param tf Pointer to a transform listener
    * @param costmap_ros Cost map representing occupied and free space
    */
-  void configure(
-    const rclcpp_lifecycle::LifecycleNode::SharedPtr& node,
-    std::string name,
-    const std::shared_ptr<tf2_ros::Buffer> & tf,
+  void configure(const rclcpp_lifecycle::LifecycleNode::WeakPtr & node,
+    std::string name, const std::shared_ptr<tf2_ros::Buffer> & tf,
     const std::shared_ptr<nav2_costmap_2d::Costmap2DROS> & costmap_ros) override;
 
   void activate() override;
@@ -137,7 +135,10 @@ public:
     */
   geometry_msgs::msg::TwistStamped computeVelocityCommands(
     const geometry_msgs::msg::PoseStamped &pose,
-    const geometry_msgs::msg::Twist &velocity);
+    const geometry_msgs::msg::Twist &velocity,
+    nav2_core::GoalChecker * goal_checker) override;
+
+  void setSpeedLimit(const double& speed_limit, const bool& percentage) override;
   
     
   /** @name Public utility functions/methods */

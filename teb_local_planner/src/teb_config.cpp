@@ -46,10 +46,15 @@ namespace teb_local_planner
 void TebConfig::declareParameters(const nav2_util::LifecycleNode::SharedPtr nh, const std::string name) {
   const std::string nd = name + "."; // nd is short for name plus dot
   using Dv = rclcpp::ParameterValue; // Dv is short for default value
-  constexpr auto para_ = nav2_util::declare_parameter_if_not_declared<decltype(nh)>;
+
+  /*constexpr auto para_ = nav2_util::declare_parameter_if_not_declared<decltype(nh)>;
   using namespace std::placeholders; 
   const auto e = rcl_interfaces::msg::ParameterDescriptor();
-  const auto para = std::bind(para_, nh, _1,  _2, e); // use function para to declare parameters and their default value
+  const auto para = std::bind(para_, nh, _1,  _2, e); // use function para to declare parameters and their default value*/
+  auto para = [nh](const std::string& name, const Dv& default_value)
+  {
+    nav2_util::declare_parameter_if_not_declared(nh, name, default_value);
+  };
 
   // Global
   para(nd + "odom_topic", Dv("odom_topic"));
