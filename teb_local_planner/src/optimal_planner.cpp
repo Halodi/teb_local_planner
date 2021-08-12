@@ -183,7 +183,7 @@ void TebOptimalPlanner::registerG2OTypes()
 }
 
 template <typename T>
-void register_type(g2o::Factory* factory, const std::string& name)
+void TebOptimalPlanner::register_type(g2o::Factory* factory, const std::string& name)
 {
   std::unique_ptr<g2o::HyperGraphElementCreator<T>> ptr_(new g2o::HyperGraphElementCreator<T>());
   std::shared_ptr<g2o::HyperGraphElementCreator<T>> shared_(std::move(ptr_));

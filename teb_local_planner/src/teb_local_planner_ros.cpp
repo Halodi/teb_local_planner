@@ -362,9 +362,7 @@ geometry_msgs::msg::TwistStamped TebLocalPlannerROS::computeVelocityCommands(
     
   // Now perform the actual planning
 //   bool success = planner_->plan(robot_pose_, robot_goal_, robot_vel_, cfg_->goal_tolerance.free_goal_vel); // straight line init
-  RCLCPP_INFO(logger_, "starting planning attempt ...");
   bool success = planner_->plan(transformed_plan, &robot_vel_, cfg_->goal_tolerance.free_goal_vel);
-  RCLCPP_INFO(logger_, "finished planning attempt");
   if (!success)
   {
     planner_->clearPlanner(); // force reinitialization for next time
